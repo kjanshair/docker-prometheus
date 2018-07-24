@@ -8,4 +8,4 @@ To monitor a stand-alone Linux Server, you need to uncomment the `nodeexporter` 
 
 ## Monitoring HTTP-based Web Services
 
-This repo 2 HTTP-based Web Services by default: An Apache httpd server and NGINX server both running in Docker Containers. If either or both of them goes down, an Prometheus Will fire an Alert in the form emails specified in the `config.yml` file in the AlertManager folder.
+This repo monitors 2 HTTP-based Web Services by default: An Apache httpd server and NGINX server both running in Docker Containers. If either or both of them goes down, an Prometheus will fire alerts in the form emails specified in the `config.yml` file in the AlertManager folder.
