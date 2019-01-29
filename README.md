@@ -1,3 +1,5 @@
+[![Build Status](https://dev.azure.com/kjanshair/docker-prometheus/_apis/build/status/kjanshair.docker-prometheus?branchName=master)](https://dev.azure.com/kjanshair/docker-prometheus/_build/latest?definitionId=1?branchName=master)
+
 ## Prometheus Monitoring
 
 This repository contains minimal Prometheus Server, NodeExporter, BlackBoxExporter, AlertManager and Grafana implementation for monitoring various services. You can use this repository to monitor a bare-metal Linux instance or to monitor Apache, NGINX or other HTTP based services using Prometheus.
