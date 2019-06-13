@@ -30,24 +30,26 @@ services:
     networks:
       - monitor-net
   
-  # nodeexporter:
-  #   image: prom/node-exporter:latest
-  #   container_name: nodeexporter
-  #   user: root
-  #   privileged: true
-  #   volumes:
-  #     - /proc:/host/proc:ro
-  #     - /sys:/host/sys:ro
-  #     - /:/rootfs:ro
-  #   command:
-  #     - '--path.procfs=/host/proc'
-  #     - '--path.sysfs=/host/sys'
-  #     - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)'
-  #   restart: unless-stopped
-  #   expose:
-  #     - 9100
-  #   networks:
-  #     - monitor-net
+  nodeexporter:
+   image: prom/node-exporter:latest
+   container_name: nodeexporter
+   user: root
+   privileged: true
+   volumes:
+     - /proc:/host/proc:ro
+     - /sys:/host/sys:ro
+     - /:/rootfs:ro
+   command:
+     - '--path.procfs=/host/proc'
+     - '--path.sysfs=/host/sys'
+     - '--collector.filesystem.ignored-mount-points=^/(sys|proc|dev|host|etc)($$|/)'
+   restart: unless-stopped
+   expose:
+     - 9100
+   ports:
+      - "9100:9100"
+   networks:
+     - monitor-net
   
   alertmanager:
    image: prom/alertmanager
@@ -107,5 +109,16 @@ services:
     ports:
      - "5001:80"
     container_name: "nginx"
+    networks:
+     - monitor-net
+
+  consul:
+    image: consul:1.4.2
+    ports:
+      - "8500:8500"
+    container_name: "consul"
+    volumes:
+      - ./consul/config:/config
+    command: "agent -dev -bind 0.0.0.0 -client 0.0.0.0 -ui -config-dir=/config -enable-script-checks"
     networks:
      - monitor-net
