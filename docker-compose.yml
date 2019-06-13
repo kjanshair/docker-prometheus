@@ -46,6 +46,8 @@ services:
    restart: unless-stopped
    expose:
      - 9100
+   ports:
+      - "9100:9100"
    networks:
      - monitor-net
   
